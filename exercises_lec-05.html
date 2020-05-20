@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -2705,6 +2704,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -2733,6 +2733,12 @@ summary {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -2809,16 +2815,58 @@ div.tocify {
 </div>
 
 
+<div id="slide-example-video-1" class="section level1">
+<h1>Slide Example, Video 1</h1>
+<pre class="r"><code>df &lt;- data.frame(coin = c(&quot;BTC&quot;, &quot;ETH&quot;, &quot;XRP&quot;),
+ price = c(10417.04, 172.52, .26),
+ vol = c(21.29, 8.07, 1.23),
+ stringsAsFactors = FALSE)
+
+#df[1]
+#df[c(1, 3)]
+#df[1:2, 3]
+#df[, &quot;price&quot;]
+
+#df[[1]]
+#df[[&quot;vol&quot;]]
+#df[[c(1, 3)]]
+#df[[1, 3]]</code></pre>
+</div>
 <div id="exercise-1" class="section level1 tabset tabset-fade tabset-pills">
 <h1>Exercise 1</h1>
 <div id="problem" class="section level2">
 <h2>Problem</h2>
 <p>Use the built-in data frame <code>longley</code> to answer the following questions.</p>
 <ol style="list-style-type: decimal">
-<li><p>What year was the percentage of people employed relative to the population highest? Return the result as a data frame.</p></li>
-<li><p>The Korean war took place from 1950 - 1953. Filter the data frame so it only contains data from those years.</p></li>
-<li><p>What years did the number of people in the armed forces exceed the number of people unemployed? Give the result as an atomic vector.</p></li>
+<li>What year was the percentage of people employed relative to the population highest? Return the result as a data frame.</li>
 </ol>
+<pre class="r"><code>longley</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["GNP.deflator"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["GNP"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Unemployed"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Armed.Forces"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Population"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[6],"type":["int"],"align":["right"]},{"label":["Employed"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"83.0","2":"234.289","3":"235.6","4":"159.0","5":"107.608","6":"1947","7":"60.323","_rn_":"1947"},{"1":"88.5","2":"259.426","3":"232.5","4":"145.6","5":"108.632","6":"1948","7":"61.122","_rn_":"1948"},{"1":"88.2","2":"258.054","3":"368.2","4":"161.6","5":"109.773","6":"1949","7":"60.171","_rn_":"1949"},{"1":"89.5","2":"284.599","3":"335.1","4":"165.0","5":"110.929","6":"1950","7":"61.187","_rn_":"1950"},{"1":"96.2","2":"328.975","3":"209.9","4":"309.9","5":"112.075","6":"1951","7":"63.221","_rn_":"1951"},{"1":"98.1","2":"346.999","3":"193.2","4":"359.4","5":"113.270","6":"1952","7":"63.639","_rn_":"1952"},{"1":"99.0","2":"365.385","3":"187.0","4":"354.7","5":"115.094","6":"1953","7":"64.989","_rn_":"1953"},{"1":"100.0","2":"363.112","3":"357.8","4":"335.0","5":"116.219","6":"1954","7":"63.761","_rn_":"1954"},{"1":"101.2","2":"397.469","3":"290.4","4":"304.8","5":"117.388","6":"1955","7":"66.019","_rn_":"1955"},{"1":"104.6","2":"419.180","3":"282.2","4":"285.7","5":"118.734","6":"1956","7":"67.857","_rn_":"1956"},{"1":"108.4","2":"442.769","3":"293.6","4":"279.8","5":"120.445","6":"1957","7":"68.169","_rn_":"1957"},{"1":"110.8","2":"444.546","3":"468.1","4":"263.7","5":"121.950","6":"1958","7":"66.513","_rn_":"1958"},{"1":"112.6","2":"482.704","3":"381.3","4":"255.2","5":"123.366","6":"1959","7":"68.655","_rn_":"1959"},{"1":"114.2","2":"502.601","3":"393.1","4":"251.4","5":"125.368","6":"1960","7":"69.564","_rn_":"1960"},{"1":"115.7","2":"518.173","3":"480.6","4":"257.2","5":"127.852","6":"1961","7":"69.331","_rn_":"1961"},{"1":"116.9","2":"554.894","3":"400.7","4":"282.7","5":"130.081","6":"1962","7":"70.551","_rn_":"1962"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>longley[which.max(longley$Employed / longley$Population), 
+        &quot;Year&quot;, drop=FALSE]</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Year"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"1956","_rn_":"1956"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li>The Korean war took place from 1950 - 1953. Filter the data frame so it only contains data from those years.</li>
+</ol>
+<pre class="r"><code>longley[longley$Year %in% 1950:1953, ]</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["GNP.deflator"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["GNP"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Unemployed"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Armed.Forces"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Population"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Year"],"name":[6],"type":["int"],"align":["right"]},{"label":["Employed"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"89.5","2":"284.599","3":"335.1","4":"165.0","5":"110.929","6":"1950","7":"61.187","_rn_":"1950"},{"1":"96.2","2":"328.975","3":"209.9","4":"309.9","5":"112.075","6":"1951","7":"63.221","_rn_":"1951"},{"1":"98.1","2":"346.999","3":"193.2","4":"359.4","5":"113.270","6":"1952","7":"63.639","_rn_":"1952"},{"1":"99.0","2":"365.385","3":"187.0","4":"354.7","5":"115.094","6":"1953","7":"64.989","_rn_":"1953"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>What years did the number of people in the armed forces exceed the number of people unemployed? Give the result as an atomic vector.</li>
+</ol>
+<pre class="r"><code>longley$Year[longley$Armed.Forces &gt; longley$Unemployed]</code></pre>
+<pre><code>#&gt; [1] 1951 1952 1953 1955 1956</code></pre>
 </div>
 <div id="solution" class="section level2">
 <h2>Solution</h2>
@@ -2853,10 +2901,56 @@ div.tocify {
 <div id="problem-1" class="section level2">
 <h2>Problem</h2>
 <ol style="list-style-type: decimal">
-<li><p>Use function <code>sloop::ftype()</code> to see which of the following functions are S3 generics: <code>mean</code>, <code>summary</code>, <code>print</code>, <code>sum</code>, <code>plot</code>, <code>View</code>, <code>length</code>, <code>[</code>.</p></li>
-<li><p>Choose 2 of the S3 generics you identified above. How many methods exist for each? Use function <code>sloop::s3_methods_generic()</code>.</p></li>
-<li><p>How many methods exist for classes <code>factor</code> and <code>data.frame</code>. Use function <code>sloop::s3_methods_class()</code>.</p></li>
-<li><p>Consider a class called dollars. If a numeric vector has class dollars, function <code>print()</code> should print the vector with a $ in front of each number and round digits to two decimals.</p></li>
+<li>Use function <code>sloop::ftype()</code> to see which of the following functions are S3 generics: <code>mean</code>, <code>summary</code>, <code>print</code>, <code>sum</code>, <code>plot</code>, <code>View</code>, <code>length</code>, <code>[</code>.</li>
+</ol>
+<pre class="r"><code>sloop::is_s3_generic(&quot;mean&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;summary&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;print&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;sum&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;plot&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;View&quot;)</code></pre>
+<pre><code>#&gt; [1] FALSE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;length&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<pre class="r"><code>sloop::is_s3_generic(&quot;[&quot;)</code></pre>
+<pre><code>#&gt; [1] TRUE</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Choose 2 of the S3 generics you identified above. How many methods exist for each? Use function <code>sloop::s3_methods_generic()</code>.</li>
+</ol>
+<pre class="r"><code>sloop::s3_methods_generic(&quot;mean&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"mean","2":"Date","3":"TRUE","4":"base"},{"1":"mean","2":"default","3":"TRUE","4":"base"},{"1":"mean","2":"difftime","3":"TRUE","4":"base"},{"1":"mean","2":"POSIXct","3":"TRUE","4":"base"},{"1":"mean","2":"POSIXlt","3":"TRUE","4":"base"},{"1":"mean","2":"quosure","3":"FALSE","4":"registered S3method"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>sloop::s3_methods_generic(&quot;summary&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"summary","2":"aov","3":"TRUE","4":"stats"},{"1":"summary","2":"aovlist","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"aspell","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"check_packages_in_dir","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"connection","3":"TRUE","4":"base"},{"1":"summary","2":"data.frame","3":"TRUE","4":"base"},{"1":"summary","2":"Date","3":"TRUE","4":"base"},{"1":"summary","2":"default","3":"TRUE","4":"base"},{"1":"summary","2":"ecdf","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"factor","3":"TRUE","4":"base"},{"1":"summary","2":"glm","3":"TRUE","4":"stats"},{"1":"summary","2":"infl","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"lm","3":"TRUE","4":"stats"},{"1":"summary","2":"loess","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"manova","3":"TRUE","4":"stats"},{"1":"summary","2":"matrix","3":"TRUE","4":"base"},{"1":"summary","2":"mlm","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"nls","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"packageStatus","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"POSIXct","3":"TRUE","4":"base"},{"1":"summary","2":"POSIXlt","3":"TRUE","4":"base"},{"1":"summary","2":"ppr","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"prcomp","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"princomp","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"proc_time","3":"TRUE","4":"base"},{"1":"summary","2":"rlang_error","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"rlang_trace","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"srcfile","3":"TRUE","4":"base"},{"1":"summary","2":"srcref","3":"TRUE","4":"base"},{"1":"summary","2":"stepfun","3":"TRUE","4":"stats"},{"1":"summary","2":"stl","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"table","3":"TRUE","4":"base"},{"1":"summary","2":"tukeysmooth","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"vctrs_sclr","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"vctrs_vctr","3":"FALSE","4":"registered S3method"},{"1":"summary","2":"warnings","3":"TRUE","4":"base"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>How many methods exist for classes <code>factor</code> and <code>data.frame</code>. Use function <code>sloop::s3_methods_class()</code>.</li>
+</ol>
+<pre class="r"><code>sloop::s3_methods_class(&quot;factor&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"[","2":"factor","3":"TRUE","4":"base"},{"1":"[[","2":"factor","3":"TRUE","4":"base"},{"1":"[[<-","2":"factor","3":"TRUE","4":"base"},{"1":"[<-","2":"factor","3":"TRUE","4":"base"},{"1":"all.equal","2":"factor","3":"TRUE","4":"base"},{"1":"as.character","2":"factor","3":"TRUE","4":"base"},{"1":"as.data.frame","2":"factor","3":"TRUE","4":"base"},{"1":"as.Date","2":"factor","3":"TRUE","4":"base"},{"1":"as.list","2":"factor","3":"TRUE","4":"base"},{"1":"as.logical","2":"factor","3":"TRUE","4":"base"},{"1":"as.POSIXlt","2":"factor","3":"TRUE","4":"base"},{"1":"as.vector","2":"factor","3":"TRUE","4":"base"},{"1":"droplevels","2":"factor","3":"TRUE","4":"base"},{"1":"format","2":"factor","3":"TRUE","4":"base"},{"1":"is.na<-","2":"factor","3":"TRUE","4":"base"},{"1":"length<-","2":"factor","3":"TRUE","4":"base"},{"1":"levels<-","2":"factor","3":"TRUE","4":"base"},{"1":"Math","2":"factor","3":"TRUE","4":"base"},{"1":"Ops","2":"factor","3":"TRUE","4":"base"},{"1":"plot","2":"factor","3":"FALSE","4":"registered S3method"},{"1":"print","2":"factor","3":"TRUE","4":"base"},{"1":"relevel","2":"factor","3":"FALSE","4":"registered S3method"},{"1":"relist","2":"factor","3":"FALSE","4":"registered S3method"},{"1":"rep","2":"factor","3":"TRUE","4":"base"},{"1":"summary","2":"factor","3":"TRUE","4":"base"},{"1":"Summary","2":"factor","3":"TRUE","4":"base"},{"1":"xtfrm","2":"factor","3":"TRUE","4":"base"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>sloop::s3_methods_class(&quot;data.frame&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["generic"],"name":[1],"type":["chr"],"align":["left"]},{"label":["class"],"name":[2],"type":["chr"],"align":["left"]},{"label":["visible"],"name":[3],"type":["lgl"],"align":["right"]},{"label":["source"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"[","2":"data.frame","3":"TRUE","4":"base"},{"1":"[[","2":"data.frame","3":"TRUE","4":"base"},{"1":"[[<-","2":"data.frame","3":"TRUE","4":"base"},{"1":"[<-","2":"data.frame","3":"TRUE","4":"base"},{"1":"$<-","2":"data.frame","3":"TRUE","4":"base"},{"1":"aggregate","2":"data.frame","3":"TRUE","4":"stats"},{"1":"anyDuplicated","2":"data.frame","3":"TRUE","4":"base"},{"1":"as.data.frame","2":"data.frame","3":"TRUE","4":"base"},{"1":"as.list","2":"data.frame","3":"TRUE","4":"base"},{"1":"as.matrix","2":"data.frame","3":"TRUE","4":"base"},{"1":"by","2":"data.frame","3":"TRUE","4":"base"},{"1":"cbind","2":"data.frame","3":"TRUE","4":"base"},{"1":"dim","2":"data.frame","3":"TRUE","4":"base"},{"1":"dimnames","2":"data.frame","3":"TRUE","4":"base"},{"1":"dimnames<-","2":"data.frame","3":"TRUE","4":"base"},{"1":"droplevels","2":"data.frame","3":"TRUE","4":"base"},{"1":"duplicated","2":"data.frame","3":"TRUE","4":"base"},{"1":"edit","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"format","2":"data.frame","3":"TRUE","4":"base"},{"1":"formula","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"head","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"is.na","2":"data.frame","3":"TRUE","4":"base"},{"1":"Math","2":"data.frame","3":"TRUE","4":"base"},{"1":"merge","2":"data.frame","3":"TRUE","4":"base"},{"1":"na.exclude","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"na.omit","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"Ops","2":"data.frame","3":"TRUE","4":"base"},{"1":"plot","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"print","2":"data.frame","3":"TRUE","4":"base"},{"1":"prompt","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"rbind","2":"data.frame","3":"TRUE","4":"base"},{"1":"row.names","2":"data.frame","3":"TRUE","4":"base"},{"1":"row.names<-","2":"data.frame","3":"TRUE","4":"base"},{"1":"rowsum","2":"data.frame","3":"TRUE","4":"base"},{"1":"split","2":"data.frame","3":"TRUE","4":"base"},{"1":"split<-","2":"data.frame","3":"TRUE","4":"base"},{"1":"stack","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"str","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"subset","2":"data.frame","3":"TRUE","4":"base"},{"1":"summary","2":"data.frame","3":"TRUE","4":"base"},{"1":"Summary","2":"data.frame","3":"TRUE","4":"base"},{"1":"t","2":"data.frame","3":"TRUE","4":"base"},{"1":"tail","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"transform","2":"data.frame","3":"TRUE","4":"base"},{"1":"type.convert","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"unique","2":"data.frame","3":"TRUE","4":"base"},{"1":"unstack","2":"data.frame","3":"FALSE","4":"registered S3method"},{"1":"within","2":"data.frame","3":"TRUE","4":"base"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Consider a class called dollars. If a numeric vector has class dollars, function <code>print()</code> should print the vector with a $ in front of each number and round digits to two decimals.</li>
 </ol>
 </div>
 <div id="solution-1" class="section level2">
@@ -2873,7 +2967,7 @@ div.tocify {
 <div id="part-2-1" class="section level4">
 <h4>Part 2</h4>
 <pre class="r"><code>nrow(s3_methods_generic(&quot;mean&quot;))</code></pre>
-<pre><code>#&gt; [1] 6</code></pre>
+<pre><code>#&gt; [1] 7</code></pre>
 <pre class="r"><code>nrow(s3_methods_generic(&quot;plot&quot;))</code></pre>
 <pre><code>#&gt; [1] 29</code></pre>
 </div>
