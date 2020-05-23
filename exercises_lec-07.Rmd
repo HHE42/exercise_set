@@ -37,6 +37,8 @@ included in package `tidyr`.
 ```{r}
 usa_pop <- world_bank_pop %>% 
   filter(country == "USA")
+
+usa_pop
 ```
 
 Tidy `usa_pop` so it looks like the tibble below. 
@@ -44,7 +46,7 @@ See `?world_bank_pop` for a description of the variables and their values.
 
 ```{r echo=FALSE}
 usa_pop %>% 
-  pivot_longer(cols = `2000`:`2017`, names_to = "year", values_to = "value") %>% 
+  pivot_longer(cols = `2000`:`2017`, names_to = "year", values_to = "value")  %>% 
   pivot_wider(names_from = indicator, values_from = value) %>% 
   clean_names()
 ```
