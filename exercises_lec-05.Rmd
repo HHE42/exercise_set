@@ -134,7 +134,9 @@ sloop::s3_methods_class("data.frame")
    
    
 ```{r ex2-p4}
-
+print.dollar <- function(x) {
+  paste0("$", round(x, digits = 2))
+}
 ```
 
 ## Solution
